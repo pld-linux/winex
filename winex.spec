@@ -14,7 +14,7 @@ Summary(pt_BR):	Executa programas Windows no Linux
 Name:           winex
 Version:        20030821
 Release:        1
-License:	GPL
+License:	Aladdin FPL and partially LGPL
 Group:		Applications/Emulators
 Source0:        %{name}-%{version}.tar.gz
 # Source0-md5:	21865ba0f46862f16d627e17debb5e2e
@@ -286,7 +286,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README DEVELOPERS-HINTS ChangeLog BUGS AUTHORS ANNOUNCE
+%doc README DEVELOPERS-HINTS ChangeLog BUGS AUTHORS ANNOUNCE LICENSE
 #%doc documentation/wine-user
 %attr(755,root,root) %{_bindir}/wine
 %attr(755,root,root) %{_bindir}/wine_relocated
