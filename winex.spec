@@ -12,12 +12,12 @@ Summary:	Program that lets you launch Win applications
 Summary(es):	Ejecuta programas Windows en Linux
 Summary(pl):	Program pozwalaj±cy uruchamiaæ aplikacje Windows
 Summary(pt_BR):	Executa programas Windows no Linux
-Name:           winex
-Version:        3.3.1
-Release:        0.1
+Name:		winex
+Version:	3.3.1
+Release:	0.1
 License:	Aladdin FPL and partially LGPL
 Group:		Applications/Emulators
-Source0:        %{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	0af59d188f3d937348eee492326bb7a9
 #Source1:	%{name}.init
 Source2:	%{name}.reg
@@ -181,9 +181,9 @@ db2html winelib-user.sgml
 
 %if %{with pdf_docs}
 db2pdf 	wine-user.sgml
-db2pdf  wine-devel.sgml
-db2pdf  wine-faq.sgml
-db2pdf  winelib-user.sgml
+db2pdf	wine-devel.sgml
+db2pdf	wine-faq.sgml
+db2pdf	winelib-user.sgml
 %endif
 cd -
 
@@ -217,8 +217,8 @@ install aclocal.m4 $RPM_BUILD_ROOT%{_aclocaldir}/wine.m4
 #mv -f $RPM_BUILD_ROOT{/usr/X11R6/share/aclocal,%{_aclocaldir}}/wine.m4
 
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d \
-        $RPM_BUILD_ROOT%{_winedir}/windows/{system,Desktop,Favorites,Fonts} \
-        "$RPM_BUILD_ROOT%{_winedir}/windows/Start Menu/Programs/Startup" \
+	$RPM_BUILD_ROOT%{_winedir}/windows/{system,Desktop,Favorites,Fonts} \
+	"$RPM_BUILD_ROOT%{_winedir}/windows/Start Menu/Programs/Startup" \
 	$RPM_BUILD_ROOT%{_winedir}/windows/{SendTo,ShellNew,system32,NetHood} \
 	$RPM_BUILD_ROOT%{_winedir}/windows/{Profiles/Administrator,Recent} \
 	$RPM_BUILD_ROOT%{_winedir}/{"Program Files/Common Files","My Documents"}
@@ -254,7 +254,7 @@ if [ -n "$elfexelist" ]; then \
 	strip -R .note -R .comment $elfexelist
 fi
 if [ -n "$elfsharedlist" ]; then
-	strip --strip-unneeded -R .note  -R .comment $elfsharedlist
+	strip --strip-unneeded -R .note -R .comment $elfsharedlist
 fi
 %endif
 
@@ -262,9 +262,9 @@ fi
 
 programs="notepad progman regsvr32 uninstaller wineconsole winemine clock cmdlgtst control osversioncheck regapi regtest view winedbg winver"
 
-rm -f files.programs;   touch files.programs
+rm -f files.programs; touch files.programs
 for p in $programs; do
-        echo "%attr(755,root,root) %{_bindir}/$p" >> files.programs
+	echo "%attr(755,root,root) %{_bindir}/$p" >> files.programs
 	echo "%attr(755,root,root) %{_bindir}/$p.so" >> files.programs
 done
 
