@@ -286,7 +286,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README DEVELOPERS-HINTS ChangeLog BUGS AUTHORS ANNOUNCE LICENSE
+%doc README DEVELOPERS-HINTS ChangeLog BUGS AUTHORS ANNOUNCE LICENSE LICENSE.ReWind
 #%doc documentation/wine-user
 %attr(755,root,root) %{_bindir}/wine
 %attr(755,root,root) %{_bindir}/wine_relocated
