@@ -30,8 +30,8 @@ BuildRequires:	ncurses-devel
 BuildRequires:	openjade
 BuildRequires:	XFree86-devel
 Requires:	OpenGL
-Requires(post): ldconfig
-Requires(post,preun): chkconfig
+Requires(post):	ldconfig
+Requires(post,preun):	chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep		libGL.so.1 libGLU.so.1
@@ -103,12 +103,11 @@ WINE.
 CPPFLAGS="-I/usr/include/ncurses"; export CPPFLAGS
 CFLAGS="%{rpmcflags} $CPPFLAGS"
 %configure \
-%{!?debug:	--disable-debug} \
-%{!?debug:	--disable-trace} \
+	%{!?debug:--disable-debug} \
+	%{!?debug:--disable-trace} \
 	--enable-curses \
 	--disable-opengl \
 	--with-x
-
 %{__make} depend
 %{__make}
 
