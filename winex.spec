@@ -1,10 +1,11 @@
 #
 # Conditional build:
-%bcond_without arts     # without arts support
-%bcond_without cups     # without CUPS printing support
-%bcond_without sane     # without TWAIN scanning support (through SANE)
-%bcond_with    pdf_docs # build pdf docs (missing BR)
-%bcond_with    html_docs # build html docs (jade fault ?)
+%bcond_without	arts		# without arts support
+%bcond_without	cups		# without CUPS printing support
+%bcond_without	sane		# without TWAIN scanning support (through SANE)
+%bcond_with	pdf_docs	# build pdf docs (missing BR)
+%bcond_with	html_docs	# build html docs (jade fault ?)
+%bcond_with	nptl		# build with posix threads
 #
 # maybe TODO: alsa,jack,nas BRs/checks (see dlls/winmm/wine*)
 Summary:	Program that lets you launch Win applications
@@ -12,12 +13,12 @@ Summary(es):	Ejecuta programas Windows en Linux
 Summary(pl):	Program pozwalaj±cy uruchamiaæ aplikacje Windows
 Summary(pt_BR):	Executa programas Windows no Linux
 Name:           winex
-Version:        20030821
-Release:        1
+Version:        20040211
+Release:        0.1
 License:	Aladdin FPL and partially LGPL
 Group:		Applications/Emulators
-Source0:        %{name}-%{version}.tar.gz
-# Source0-md5:	21865ba0f46862f16d627e17debb5e2e
+Source0:        %{name}-%{version}.tar.bz2
+# Source0-md5:	f1800547275a027cb95f53825968f0cb
 #Source1:	%{name}.init
 Source2:	%{name}.reg
 Source3:	%{name}.systemreg
@@ -30,8 +31,9 @@ Patch4:		%{name}-binutils.patch
 Patch5:		%{name}-makedep.patch
 Patch6:		%{name}-build.patch
 URL:		http://www.winehq.com/
-BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
+BuildRequires:	XFree86-OpenGL-devel-base
+BuildRequires:	OpenGL-devel
 %{?with_arts:BuildRequires:	arts-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -137,7 +139,7 @@ Wine documentation in PDF format.
 Dokumentacja Wine w formacie PDF.
 
 %prep
-%setup -q -n wine
+%setup -q -n winex
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -154,13 +156,15 @@ mv -f .tmp programs/Makefile.in
 %build
 %{__aclocal}
 %{__autoconf}
-CPPFLAGS="-I/usr/include/ncurses"; export CPPFLAGS
-CFLAGS="%{rpmcflags} $CPPFLAGS"
+CFLAGS="%{rpmcflags} -DALSA_PCM_OLD_HW_PARAMS_API"; export CFLAGS
+CPPFLAGS=$CFLAGS; export CPPFLAGS
+LDFLAGS="%{rpmldflags} %{?with_nptl:-lpthread}"; export LDFLAGS
 %configure \
 	%{!?debug:--disable-debug} \
 	%{!?debug:--disable-trace} \
 	--enable-curses \
 	--enable-opengl \
+	%{?with_nptl:--enable-pthreads} \
 	--with-x
 %{__make} depend
 %{__make}
