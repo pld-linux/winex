@@ -13,12 +13,12 @@ Summary(es):	Ejecuta programas Windows en Linux
 Summary(pl):	Program pozwalaj±cy uruchamiaæ aplikacje Windows
 Summary(pt_BR):	Executa programas Windows no Linux
 Name:           winex
-Version:        20040211
-Release:        0.2
+Version:        3.3.1
+Release:        0.1
 License:	Aladdin FPL and partially LGPL
 Group:		Applications/Emulators
 Source0:        %{name}-%{version}.tar.bz2
-# Source0-md5:	f1800547275a027cb95f53825968f0cb
+# Source0-md5:	0af59d188f3d937348eee492326bb7a9
 #Source1:	%{name}.init
 Source2:	%{name}.reg
 Source3:	%{name}.systemreg
