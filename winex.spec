@@ -216,7 +216,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/fnt2bdf
 %attr(755,root,root) %{_bindir}/function_grep.pl
 %attr(755,root,root) %{_libdir}/*.so*
-#%{_libdir}/winex
+#%%{_libdir}/winex
 %{_mandir}/man[15]/*
 %config(noreplace) %{_sysconfdir}/winex.reg
 %config(missingok) %{_sysconfdir}/winex.systemreg
