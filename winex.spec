@@ -251,7 +251,7 @@ if [ -n "$elfsharedlist" ]; then
 fi
 %endif
 
-/sbin/chpax -p $RPM_BUILD_ROOT%{_bindir}/wine
+/sbin/chstk -e $RPM_BUILD_ROOT%{_bindir}/wine
 
 programs="notepad progman regsvr32 uninstaller wineconsole winemine clock cmdlgtst control osversioncheck regapi regtest view winedbg winver"
 
