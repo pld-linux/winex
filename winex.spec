@@ -14,7 +14,7 @@ Summary(pl):	Program pozwalaj±cy uruchamiaæ aplikacje Windows
 Summary(pt_BR):	Executa programas Windows no Linux
 Name:           winex
 Version:        20040211
-Release:        0.1
+Release:        0.2
 License:	Aladdin FPL and partially LGPL
 Group:		Applications/Emulators
 Source0:        %{name}-%{version}.tar.bz2
@@ -258,7 +258,7 @@ if [ -n "$elfsharedlist" ]; then
 fi
 %endif
 
-/sbin/chstk -e $RPM_BUILD_ROOT%{_bindir}/wine
+# /sbin/chstk -e $RPM_BUILD_ROOT%{_bindir}/wine
 
 programs="notepad progman regsvr32 uninstaller wineconsole winemine clock cmdlgtst control osversioncheck regapi regtest view winedbg winver"
 
