@@ -1,0 +1,232 @@
+diff -Nru wine.orig/tools/widl/ppl.l wine/tools/widl/ppl.l
+--- wine.orig/tools/widl/ppl.l	2003-08-21 09:34:56.000000000 +0000
++++ wine/tools/widl/ppl.l	2003-08-21 09:36:06.000000000 +0000
+@@ -1,112 +1,4 @@
+ /*
+- * Wrc preprocessor lexical analysis
+- *
+- * Copyright 1999-2000	Bertho A. Stultiens (BS)
+- *
+- * 24-Apr-2000 BS	- Started from scratch to restructure everything
+- *			  and reintegrate the source into the wine-tree.
+- * 04-Jan-2000 BS	- Added comments about the lexicographical
+- *			  grammar to give some insight in the complexity.
+- * 28-Dec-1999 BS	- Eliminated backing-up of the flexer by running
+- *			  `flex -b' on the source. This results in some
+- *			  weirdo extra rules, but a much faster scanner.
+- * 23-Dec-1999 BS	- Started this file
+- *
+- *-------------------------------------------------------------------------
+- * The preprocessor's lexographical grammar (approximately):
+- *
+- * pp		:= {ws} # {ws} if {ws} {expr} {ws} \n
+- *		|  {ws} # {ws} ifdef {ws} {id} {ws} \n
+- *		|  {ws} # {ws} ifndef {ws} {id} {ws} \n
+- *		|  {ws} # {ws} elif {ws} {expr} {ws} \n
+- *		|  {ws} # {ws} else {ws} \n
+- *		|  {ws} # {ws} endif {ws} \n
+- *		|  {ws} # {ws} include {ws} < {anytext} > \n
+- *		|  {ws} # {ws} include {ws} " {anytext} " \n
+- *		|  {ws} # {ws} define {ws} {anytext} \n
+- *		|  {ws} # {ws} define( {arglist} ) {ws} {expansion} \n
+- *		|  {ws} # {ws} pragma {ws} {anytext} \n
+- *		|  {ws} # {ws} ident {ws} {anytext} \n
+- *		|  {ws} # {ws} error {ws} {anytext} \n
+- *		|  {ws} # {ws} warning {ws} {anytext} \n
+- *		|  {ws} # {ws} line {ws} " {anytext} " {number} \n
+- *		|  {ws} # {ws} {number} " {anytext} " {number} [{number} [{number}]] \n
+- *		|  {ws} # {ws} \n
+- *
+- * ws		:= [ \t\r\f\v]*
+- *
+- * expr		:= {expr} [+-*%^/|&] {expr}
+- *		|  {expr} {logor|logand} {expr}
+- *		|  [!~+-] {expr}
+- *		|  {expr} ? {expr} : {expr}
+- *
+- * logor	:= ||
+- *
+- * logand	:= &&
+- *
+- * id		:= [a-zA-Z_][a-zA-Z0-9_]*
+- *
+- * anytext	:= [^\n]*	(see note)
+- *
+- * arglist	:=
+- *		|  {id}
+- *		|  {arglist} , {id}
+- *		|  {arglist} , {id} ...
+- *
+- * expansion	:= {id}
+- *		|  # {id}
+- *		|  {anytext}
+- *		|  {anytext} ## {anytext}
+- *
+- * number	:= [0-9]+
+- *
+- * Note: "anytext" is not always "[^\n]*". This is because the
+- *	 trailing context must be considered as well.
+- *
+- * The only certain assumption for the preprocessor to make is that
+- * directives start at the beginning of the line, followed by a '#'
+- * and end with a newline.
+- * Any directive may be suffixed with a line-continuation. Also
+- * classical comment / *...* / (note: no comments within comments,
+- * therefore spaces) is considered to be a line-continuation
+- * (according to gcc and egcs AFAIK, ANSI is a bit vague).
+- * Comments have not been added to the above grammer for simplicity
+- * reasons. However, it is allowed to enter comment anywhere within
+- * the directives as long as they do not interfere with the context.
+- * All comments are considered to be deletable whitespace (both
+- * classical form "/ *...* /" and C++ form "//...\n").
+- *
+- * All recursive scans, except for macro-expansion, are done by the
+- * parser, whereas the simple state transitions of non-recursive
+- * directives are done in the scanner. This results in the many
+- * exclusive start-conditions of the scanner.
+- *
+- * Macro expansions are slightly more difficult because they have to
+- * prescan the arguments. Parameter substitution is literal if the
+- * substitution is # or ## (either side). This enables new identifiers
+- * to be created (see 'info cpp' node Macro|Pitfalls|Prescan for more
+- * information).
+- *
+- * FIXME: Variable macro parameters is recognized, but not yet
+- * expanded. I have to reread the ANSI standard on the subject (yes,
+- * ANSI defines it).
+- *
+- * The following special defines are supported:
+- * __FILE__	-> "thissource.c"
+- * __LINE__	-> 123
+- * __DATE__	-> "May  1 2000"
+- * __TIME__	-> "23:59:59"
+- * These macros expand, as expected, into their ANSI defined values.
+- *
+- * The same include prevention is implemented as gcc and egcs does.
+- * This results in faster processing because we do not read the text
+- * at all. Some wine-sources attempt to include the same file 4 or 5
+- * times. This strategy also saves a lot blank output-lines, which in
+- * its turn improves the real resource scanner/parser.
+- *
+- */
+-
+-/*
+  * Special flex options and exclusive scanner start-conditions
+  */
+ %option stack
+diff -Nru wine.orig/tools/wrc/ppl.l wine/tools/wrc/ppl.l
+--- wine.orig/tools/wrc/ppl.l	2003-08-21 09:34:56.000000000 +0000
++++ wine/tools/wrc/ppl.l	2003-08-21 09:36:13.000000000 +0000
+@@ -1,112 +1,4 @@
+ /*
+- * Wrc preprocessor lexical analysis
+- *
+- * Copyright 1999-2000	Bertho A. Stultiens (BS)
+- *
+- * 24-Apr-2000 BS	- Started from scratch to restructure everything
+- *			  and reintegrate the source into the wine-tree.
+- * 04-Jan-2000 BS	- Added comments about the lexicographical
+- *			  grammar to give some insight in the complexity.
+- * 28-Dec-1999 BS	- Eliminated backing-up of the flexer by running
+- *			  `flex -b' on the source. This results in some
+- *			  weirdo extra rules, but a much faster scanner.
+- * 23-Dec-1999 BS	- Started this file
+- *
+- *-------------------------------------------------------------------------
+- * The preprocessor's lexographical grammar (approximately):
+- *
+- * pp		:= {ws} # {ws} if {ws} {expr} {ws} \n
+- *		|  {ws} # {ws} ifdef {ws} {id} {ws} \n
+- *		|  {ws} # {ws} ifndef {ws} {id} {ws} \n
+- *		|  {ws} # {ws} elif {ws} {expr} {ws} \n
+- *		|  {ws} # {ws} else {ws} \n
+- *		|  {ws} # {ws} endif {ws} \n
+- *		|  {ws} # {ws} include {ws} < {anytext} > \n
+- *		|  {ws} # {ws} include {ws} " {anytext} " \n
+- *		|  {ws} # {ws} define {ws} {anytext} \n
+- *		|  {ws} # {ws} define( {arglist} ) {ws} {expansion} \n
+- *		|  {ws} # {ws} pragma {ws} {anytext} \n
+- *		|  {ws} # {ws} ident {ws} {anytext} \n
+- *		|  {ws} # {ws} error {ws} {anytext} \n
+- *		|  {ws} # {ws} warning {ws} {anytext} \n
+- *		|  {ws} # {ws} line {ws} " {anytext} " {number} \n
+- *		|  {ws} # {ws} {number} " {anytext} " {number} [{number} [{number}]] \n
+- *		|  {ws} # {ws} \n
+- *
+- * ws		:= [ \t\r\f\v]*
+- *
+- * expr		:= {expr} [+-*%^/|&] {expr}
+- *		|  {expr} {logor|logand} {expr}
+- *		|  [!~+-] {expr}
+- *		|  {expr} ? {expr} : {expr}
+- *
+- * logor	:= ||
+- *
+- * logand	:= &&
+- *
+- * id		:= [a-zA-Z_][a-zA-Z0-9_]*
+- *
+- * anytext	:= [^\n]*	(see note)
+- *
+- * arglist	:=
+- *		|  {id}
+- *		|  {arglist} , {id}
+- *		|  {arglist} , {id} ...
+- *
+- * expansion	:= {id}
+- *		|  # {id}
+- *		|  {anytext}
+- *		|  {anytext} ## {anytext}
+- *
+- * number	:= [0-9]+
+- *
+- * Note: "anytext" is not always "[^\n]*". This is because the
+- *	 trailing context must be considered as well.
+- *
+- * The only certain assumption for the preprocessor to make is that
+- * directives start at the beginning of the line, followed by a '#'
+- * and end with a newline.
+- * Any directive may be suffixed with a line-continuation. Also
+- * classical comment / *...* / (note: no comments within comments,
+- * therefore spaces) is considered to be a line-continuation
+- * (according to gcc and egcs AFAIK, ANSI is a bit vague).
+- * Comments have not been added to the above grammer for simplicity
+- * reasons. However, it is allowed to enter comment anywhere within
+- * the directives as long as they do not interfere with the context.
+- * All comments are considered to be deletable whitespace (both
+- * classical form "/ *...* /" and C++ form "//...\n").
+- *
+- * All recursive scans, except for macro-expansion, are done by the
+- * parser, whereas the simple state transitions of non-recursive
+- * directives are done in the scanner. This results in the many
+- * exclusive start-conditions of the scanner.
+- *
+- * Macro expansions are slightly more difficult because they have to
+- * prescan the arguments. Parameter substitution is literal if the
+- * substitution is # or ## (either side). This enables new identifiers
+- * to be created (see 'info cpp' node Macro|Pitfalls|Prescan for more
+- * information).
+- *
+- * FIXME: Variable macro parameters is recognized, but not yet
+- * expanded. I have to reread the ANSI standard on the subject (yes,
+- * ANSI defines it).
+- *
+- * The following special defines are supported:
+- * __FILE__	-> "thissource.c"
+- * __LINE__	-> 123
+- * __DATE__	-> "May  1 2000"
+- * __TIME__	-> "23:59:59"
+- * These macros expand, as expected, into their ANSI defined values.
+- *
+- * The same include prevention is implemented as gcc and egcs does.
+- * This results in faster processing because we do not read the text
+- * at all. Some wine-sources attempt to include the same file 4 or 5
+- * times. This strategy also saves a lot blank output-lines, which in
+- * its turn improves the real resource scanner/parser.
+- *
+- */
+-
+-/*
+  * Special flex options and exclusive scanner start-conditions
+  */
+ %option stack

@@ -1,0 +1,14 @@
+--- wine.orig/tools/winebuild/import.c	2003-08-21 10:40:05.000000000 +0000
++++ wine/tools/winebuild/import.c	2003-08-21 10:48:27.000000000 +0000
+@@ -662,9 +662,11 @@
+             if (strstr( dll_imports[i]->imports[j], "__wine_call_from_16" ))
+                 fprintf( outfile, ".byte 0x2e\\n\\tjmp *(delay_imports+%d)\\n\\tnop\\n", pos );
+             else
++#if 0
+    if (*p == 'U') {
+            if (p[1] == ' ') p+=2;
+    }
++#endif
+                 fprintf( outfile, "jmp *(delay_imports+%d)\\n\\tmovl %%esi,%%esi\\n", pos );
+ #elif defined(__sparc__)
+             if ( !UsePIC )

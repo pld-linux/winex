@@ -1,0 +1,22 @@
+diff -Nru wine.orig/Make.rules.in wine/Make.rules.in
+--- wine.orig/Make.rules.in	2003-08-21 10:39:59.000000000 +0000
++++ wine/Make.rules.in	2003-08-21 10:41:59.000000000 +0000
+@@ -90,13 +90,13 @@
+ INSTALL_DATA    = @INSTALL_DATA@
+ prefix          = @prefix@
+ exec_prefix     = @exec_prefix@
+-bindir          = @bindir@
+-libdir          = @libdir@
+-infodir         = @infodir@
+-mandir          = @mandir@
++bindir          = $(DESTDIR)/@bindir@
++libdir          = $(DESTDIR)/@libdir@
++infodir         = $(DESTDIR)/@infodir@
++mandir          = $(DESTDIR)/@mandir@
+ prog_manext     = 1
+ conf_manext     = 5
+-includedir      = @includedir@/wine
++includedir      = $(DESTDIR)/@includedir@/wine
+ CLEAN_FILES     = *.o *.a *.so *.ln \\\#*\\\# *~ *% .\\\#* *.bak *.orig *.rej \
+                   *.flc *.spec.c *.spec.def *.glue.c y.tab.c y.tab.h @LEX_OUTPUT_ROOT@.c core
+ 
