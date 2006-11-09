@@ -31,9 +31,9 @@ Patch4:		%{name}-binutils.patch
 Patch5:		%{name}-makedep.patch
 Patch6:		%{name}-build.patch
 URL:		http://www.winehq.com/
-BuildRequires:	XFree86-devel
-BuildRequires:	XFree86-OpenGL-devel-base
 BuildRequires:	OpenGL-devel
+BuildRequires:	XFree86-OpenGL-devel-base
+BuildRequires:	XFree86-devel
 %{?with_arts:BuildRequires:	arts-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,15 +50,15 @@ BuildRequires:	ncurses-devel
 BuildRequires:	openjade
 %endif
 %if %{with pdf_docs}
-BuildRequires:	tetex-metafont
 BuildRequires:	tetex-fonts-pazo
 BuildRequires:	tetex-fonts-stmaryrd
 BuildRequires:	tetex-fonts-type1-urw
+BuildRequires:	tetex-metafont
 %endif
 %{?with_sane:BuildRequires:	sane-backends-devel}
-Requires:	OpenGL
 Requires(post):	/sbin/ldconfig
-Requires(post,preun):/sbin/chkconfig
+Requires(post,preun):	/sbin/chkconfig
+Requires:	OpenGL
 # link to wine/ntdll.dll.so, without any SONAME
 Provides:	libntdll.dll.so
 ExclusiveArch:	%{ix86}
@@ -100,7 +100,7 @@ Summary(es):	Biblioteca de desarrollo de wine
 Summary(pl):	Wine - pliki nag³owkowe
 Summary(pt_BR):	Biblioteca de desenvolvimento do wine
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Wine - header files.
@@ -119,7 +119,7 @@ WINE.
 Summary:	Wine - programs
 Summary(pl):	Wine - programy
 Group:		Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description programs
 Wine - programs.
@@ -139,7 +139,7 @@ Wine documentation in PDF format.
 Dokumentacja Wine w formacie PDF.
 
 %prep
-%setup -q -n winex
+%setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
