@@ -9,9 +9,9 @@
 #
 # maybe TODO: alsa,jack,nas BRs/checks (see dlls/winmm/wine*)
 Summary:	Program that lets you launch Win applications
-Summary(es):	Ejecuta programas Windows en Linux
-Summary(pl):	Program pozwalaj±cy uruchamiaæ aplikacje Windows
-Summary(pt_BR):	Executa programas Windows no Linux
+Summary(es.UTF-8):   Ejecuta programas Windows en Linux
+Summary(pl.UTF-8):   Program pozwalajÄ…cy uruchamiaÄ‡ aplikacje Windows
+Summary(pt_BR.UTF-8):   Executa programas Windows no Linux
 Name:		winex
 Version:	3.3.1
 Release:	0.1
@@ -77,65 +77,65 @@ Windows binary, and a library that implements Windows API calls using
 their Unix or X11 equivalents. The library may also be used for
 porting Win32 code into native Unix executables.
 
-%description -l es
+%description -l es.UTF-8
 Ejecuta programas Windows en Linux.
 
-%description -l pl
-Wine jest programem dziêki któremu mo¿na uruchamiaæ programy napisane
-dla Microsoft Windows pod systemami uniksowymi. Sk³ada siê on z
-loadera, który pozwala wczytywaæ i uruchamiaæ programy w formacie
-Microsoft Windows oraz z biblioteki, która implementuje API Windows
-przy u¿yciu odpowiedników uniksowych oraz z X11. Biblioteka mo¿e byæ
-tak¿e wykorzystana do przenoszenia aplikacji Win32 do Uniksa.
+%description -l pl.UTF-8
+Wine jest programem dziÄ™ki ktÃ³remu moÅ¼na uruchamiaÄ‡ programy napisane
+dla Microsoft Windows pod systemami uniksowymi. SkÅ‚ada siÄ™ on z
+loadera, ktÃ³ry pozwala wczytywaÄ‡ i uruchamiaÄ‡ programy w formacie
+Microsoft Windows oraz z biblioteki, ktÃ³ra implementuje API Windows
+przy uÅ¼yciu odpowiednikÃ³w uniksowych oraz z X11. Biblioteka moÅ¼e byÄ‡
+takÅ¼e wykorzystana do przenoszenia aplikacji Win32 do Uniksa.
 
-%description -l pt_BR
-O Wine é um programa que permite rodar programas MS-Windows no X11.
+%description -l pt_BR.UTF-8
+O Wine Ã© um programa que permite rodar programas MS-Windows no X11.
 Ele consiste de um carregador de programa, que carrega e executa um
-binário MS-Windows, e de uma biblioteca de emulação que traduz as
+binÃ¡rio MS-Windows, e de uma biblioteca de emulaÃ§Ã£o que traduz as
 chamadas da API para as equivalentes Unix/X11.
 
 %package devel
 Summary:	Wine - header files
-Summary(es):	Biblioteca de desarrollo de wine
-Summary(pl):	Wine - pliki nag³owkowe
-Summary(pt_BR):	Biblioteca de desenvolvimento do wine
+Summary(es.UTF-8):   Biblioteca de desarrollo de wine
+Summary(pl.UTF-8):   Wine - pliki nagÅ‚owkowe
+Summary(pt_BR.UTF-8):   Biblioteca de desenvolvimento do wine
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Wine - header files.
 
-%description devel -l es
+%description devel -l es.UTF-8
 Biblioteca de desarrollo de wine.
 
-%description devel -l pl
-Wine - pliki nag³ówkowe.
+%description devel -l pl.UTF-8
+Wine - pliki nagÅ‚Ã³wkowe.
 
-%description devel -l pt_BR
-Arquivos de inclusão e bibliotecas para desenvolver aplicações com o
+%description devel -l pt_BR.UTF-8
+Arquivos de inclusÃ£o e bibliotecas para desenvolver aplicaÃ§Ãµes com o
 WINE.
 
 %package programs
 Summary:	Wine - programs
-Summary(pl):	Wine - programy
+Summary(pl.UTF-8):   Wine - programy
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description programs
 Wine - programs.
 
-%description programs -l pl
+%description programs -l pl.UTF-8
 Wine - programy.
 
 %package doc-pdf
 Summary:	Wine documentation in PDF
-Summary(pl):	Dokumentacja Wine w formacie PDF
+Summary(pl.UTF-8):   Dokumentacja Wine w formacie PDF
 Group:		Documentation
 
 %description doc-pdf
 Wine documentation in PDF format.
 
-%description doc-pdf -l pl
+%description doc-pdf -l pl.UTF-8
 Dokumentacja Wine w formacie PDF.
 
 %prep
