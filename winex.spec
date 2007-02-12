@@ -9,9 +9,9 @@
 #
 # maybe TODO: alsa,jack,nas BRs/checks (see dlls/winmm/wine*)
 Summary:	Program that lets you launch Win applications
-Summary(es.UTF-8):   Ejecuta programas Windows en Linux
-Summary(pl.UTF-8):   Program pozwalający uruchamiać aplikacje Windows
-Summary(pt_BR.UTF-8):   Executa programas Windows no Linux
+Summary(es.UTF-8):	Ejecuta programas Windows en Linux
+Summary(pl.UTF-8):	Program pozwalający uruchamiać aplikacje Windows
+Summary(pt_BR.UTF-8):	Executa programas Windows no Linux
 Name:		winex
 Version:	3.3.1
 Release:	0.1
@@ -96,9 +96,9 @@ chamadas da API para as equivalentes Unix/X11.
 
 %package devel
 Summary:	Wine - header files
-Summary(es.UTF-8):   Biblioteca de desarrollo de wine
-Summary(pl.UTF-8):   Wine - pliki nagłowkowe
-Summary(pt_BR.UTF-8):   Biblioteca de desenvolvimento do wine
+Summary(es.UTF-8):	Biblioteca de desarrollo de wine
+Summary(pl.UTF-8):	Wine - pliki nagłowkowe
+Summary(pt_BR.UTF-8):	Biblioteca de desenvolvimento do wine
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -117,7 +117,7 @@ WINE.
 
 %package programs
 Summary:	Wine - programs
-Summary(pl.UTF-8):   Wine - programy
+Summary(pl.UTF-8):	Wine - programy
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -129,7 +129,7 @@ Wine - programy.
 
 %package doc-pdf
 Summary:	Wine documentation in PDF
-Summary(pl.UTF-8):   Dokumentacja Wine w formacie PDF
+Summary(pl.UTF-8):	Dokumentacja Wine w formacie PDF
 Group:		Documentation
 
 %description doc-pdf
